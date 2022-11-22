@@ -1,10 +1,15 @@
 import React from 'react'
 import * as d3 from 'd3'
-// import throttle from 'lodash.throttle';
 import { calculateScale } from './util.js'
 import mockData from '../example/src/mockData.js'
 
-const Viz = ({ data, X_TRANSFORM, Y_TRANSFORM, WIDTH, HEIGHT }) => {
+const Viz = ({
+  data,
+  X_TRANSFORM = 100,
+  Y_TRANSFORM = 20,
+  WIDTH = 1000,
+  HEIGHT = 600
+}) => {
   const [current, setCurrent] = React.useState('Model1')
   const [nodes] = React.useState(data.nodes)
   const [fociA] = React.useState(data.metricsA)

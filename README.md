@@ -1,13 +1,13 @@
-# react-responsive-scatter
+# react-ab-scatter
 
 > React component for comparing scatter plots
 
-[![NPM](https://img.shields.io/npm/v/react-responsive-scatter.svg)](https://www.npmjs.com/package/react-responsive-scatter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-ab-scatter.svg)](https://www.npmjs.com/package/react-ab-scatter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-responsive-scatter
+npm install --save react-ab-scatter
 ```
 
 ## Usage
