@@ -1,10 +1,13 @@
 {
-  "name": "react-responsive-scatter",
+  "name": "react-ab-scatter",
   "version": "1.0.0",
   "description": "React component for comparing scatter plots",
   "author": "A-ZHANG1",
   "license": "MIT",
-  "repository": "A-ZHANG1/react-responsive-scatter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A-ZHANG1/react-responsive-scatter.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -52,5 +55,19 @@
   },
   "files": [
     "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/A-ZHANG1/react-responsive-scatter/issues"
+  },
+  "homepage": "https://github.com/A-ZHANG1/react-responsive-scatter#readme",
+  "directories": {
+    "example": "example"
+  },
+  "keywords": [
+    "react",
+    "d3",
+    "responsive",
+    "scatter",
+    "plot"
   ]
 }

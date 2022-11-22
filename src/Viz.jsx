@@ -1,11 +1,10 @@
 import React from 'react'
 import * as d3 from 'd3'
 // import throttle from 'lodash.throttle';
+import { calculateScale } from './util.js'
+import mockData from '../example/src/mockData.js'
 
-const width = 1000
-const height = 600
-
-const Viz = ({ data }) => {
+const Viz = ({ data, X_TRANSFORM, Y_TRANSFORM, WIDTH, HEIGHT }) => {
   const [current, setCurrent] = React.useState('Model1')
   const [nodes] = React.useState(data.nodes)
   const [fociA] = React.useState(data.metricsA)
@@ -17,7 +16,7 @@ const Viz = ({ data }) => {
       const simulation = d3
         .forceSimulation()
         .force('charge', d3.forceManyBody())
-        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('center', d3.forceCenter(WIDTH / 2, HEIGHT / 2))
         .force('cx', d3.forceX())
         .force('cy', d3.forceY())
 
@@ -46,18 +45,21 @@ const Viz = ({ data }) => {
         })
 
       simulation.on('tick', function () {
-        console.log('ticked')
-        console.log(svg)
+        // console.log('ticked')
+        // console.log(svg)
         circles
           .attr('cx', function (d) {
-            console.log(`d lo: ${JSON.stringify(d)},  ${fociA}`)
             let x
-            current === 'Model1' ? (x = fociA[d.idx].x) : (x = fociB[d.idx].x)
+            current === 'Model1'
+              ? (x = fociA[d.idx].x + X_TRANSFORM)
+              : (x = fociB[d.idx].x + X_TRANSFORM)
             return x
           })
           .attr('cy', function (d) {
             let y
-            current === 'Model1' ? (y = fociA[d.idx].y) : (y = fociB[d.idx].y)
+            current === 'Model1'
+              ? (y = fociA[d.idx].y + Y_TRANSFORM)
+              : (y = fociB[d.idx].y + Y_TRANSFORM)
             return y
           })
       })
@@ -68,20 +70,32 @@ const Viz = ({ data }) => {
   )
 
   React.useEffect(() => {
-    const xScale = d3.scaleLinear().range([0, width])
-    console.log(xScale)
-    const yScale = d3.scaleLinear().range([0, height])
-    // todo: calc xScale and yScale from data
-    const xAxis = d3.axisBottom(xScale)
-    const yAxis = d3.axisLeft(yScale)
+    const xScale = d3
+      .scaleLinear()
+      // input between [lowerbound, upperbound]
+      .domain(calculateScale(mockData, 'x'))
+      // mapped to outpSut between [lowerbound, upperbound]
+      .range([0, WIDTH])
+    const yScale = d3
+      .scaleLinear()
+      .domain(calculateScale(mockData, 'y'))
+      .range([0, HEIGHT])
+    const xAxis = d3.axisTop().scale(xScale)
+    const yAxis = d3.axisLeft().scale(yScale)
     const svg = d3
       .select(containerRef.current)
       .attr('id', 'the_SVG_ID')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', WIDTH)
+      .attr('height', HEIGHT)
 
-    svg.append('g').attr('class', 'axis').call(xAxis)
-    svg.append('g').attr('class', 'axis').call(yAxis)
+    svg
+      .append('g')
+      .attr('transform', 'translate(' + X_TRANSFORM + ',' + HEIGHT + ')')
+      .call(xAxis)
+    svg
+      .append('g')
+      .attr('transform', 'translate(' + X_TRANSFORM + ',' + Y_TRANSFORM + ')')
+      .call(yAxis)
     updateDiagram(svg)
   }, [updateDiagram])
 

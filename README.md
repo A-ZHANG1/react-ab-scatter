@@ -19,7 +19,11 @@ import Viz from 'react-responsive-scatter'
 
 class Example extends Component {
   render() {
-    return <Viz data = {mockData}/>
+    return <Viz data = {mockData}
+                WIDTH = {1000} // scatter plot width
+                HEIGHT = {600} // scatter plot height
+                Y_TRANSFORM = {20} // position on canvas - y
+                X_TRANSFORM = {100}/> // position on canvas - x
   }
 }
 ```
@@ -62,6 +66,16 @@ mockData = {
 ```
 
 See ./example/src/ for a complete example.
+
+## Contribution
+```{shell}
+npm install # install dependencies in package.json
+npm run build # create bundle in dist.js
+npm start # watch watches the src/ and recompiles it into the dist/ folder when you make changes.
+cd example/src && npm run build
+npm start # runs the example app that links to your package.
+```
+The project will be running on http://localhost:3000/
 
 ## License
 
