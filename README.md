@@ -1,6 +1,8 @@
 # react-ab-scatter
 
-> React component for comparing scatter plots
+> React component for comparing scatter plots.
+>
+> Demo: https://a-zhang1.github.io/home/
 
 [![NPM](https://img.shields.io/npm/v/react-ab-scatter.svg)](https://www.npmjs.com/package/react-ab-scatter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -15,7 +17,7 @@ npm install --save react-ab-scatter
 ```jsx
 import React, { Component } from 'react'
 
-import Viz from 'react-responsive-scatter'
+import Viz from 'react-ab-scatter'
 
 class Example extends Component {
   render() {
